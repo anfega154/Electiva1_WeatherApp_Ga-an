@@ -1,35 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import SearchBar from "./components/SearchBar";
+import WeatherCard from "./components/WeatherCard";
+import HistoryList from "./components/HistoryList";
+import { useWeather } from "./hooks/useWeather";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const { data, loading, error, search, history, clearHistory } = useWeather();
+
+  function handleSelectHistory(item: any) {
+    search(item.name);
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+    <div className="min-vh-100 d-flex justify-content-center align-items-start py-4 bg-light">
+      <div className="container" style={{ maxWidth: 920 }}>
+        <h1 className="text-center mb-3">🌤 Weather App</h1>
+        <p className="text-muted text-center mb-4">
+          Consulta condiciones climáticas en tiempo real.
+          PD: No aprobé diseño grafico 🫠🫠🫠
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
 
-export default App
+        <SearchBar onSearch={search} />
+
+        {loading && <div className="alert alert-info">Cargando…</div>}
+        {error && <div className="alert alert-danger">Error: {error}</div>}
+
+        {data && (
+          <div className="d-flex justify-content-center mt-3">
+            <WeatherCard weather={data} />
+          </div>
+        )}
+
+        <HistoryList
+          history={history}
+          onSelect={handleSelectHistory}
+          onClear={clearHistory}
+        />
+      </div>
+    </div>
+  );
+}
