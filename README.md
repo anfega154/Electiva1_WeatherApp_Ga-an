@@ -1,69 +1,73 @@
-# React + TypeScript + Vite
+# 🌦️ Weather App 
+# Electiva I
+# Andrés Felipe Gañan Moreno
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web desarrollada con **React.js**, **TypeScript** y **Vite** que permite consultar el clima en tiempo real de una ubicación específica.  
+Este proyecto forma parte de la materia *Electiva I Desarrollo Frontend* y tiene como objetivo reforzar conceptos de consumo de APIs, componentes funcionales y hooks.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📖 Contexto de la aplicación
+La **Weather App** permite al usuario consultar condiciones climáticas actuales para una ciudad o región determinada.  
+La información mostrada incluye:
+- 🌡️ Temperatura  
+- 💧 Humedad  
+- ☁️ Estado general del clima  
 
-## Expanding the ESLint configuration
+El proyecto utiliza una **API pública de clima** ([OpenMeteo](https://open-meteo.com/)) para obtener los datos en tiempo real.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📋 Reglas de negocio
+- El usuario debe poder introducir una ubicación (ciudad/región) para obtener datos del clima.
+- La aplicación debe mostrar al menos: **temperatura, humedad y descripción del clima**.
+- Manejo de estados:
+  - **Cargando…** mientras la API responde.  
+  - **Error amigable** si la ciudad no existe o la API falla.  
+- La interfaz y mensajes estarán en **español**.  
+- Tecnologías permitidas: **React.js + TypeScript + Vite**.  
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🎯 Casos de uso
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 1. Consultar clima de una ciudad
+- El usuario escribe el nombre de una ciudad y presiona **“Buscar”**.  
+- El sistema consulta la API y muestra:
+  - Temperatura  
+  - Humedad  
+  - Descripción del clima  
+  - (Opcional) Ícono representativo  
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 2. Manejo de error
+- Si la ciudad no existe o ocurre un problema con la API, se muestra un mensaje de error claro y amigable.  
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 3. Estado de carga
+- Mientras se espera la respuesta de la API, se muestra un indicador de **“Cargando…”**.  
+
+### 🔥 Opcional avanzado
+- Historial de búsqueda de múltiples ciudades.  
+- Fondos dinámicos según el estado del clima (soleado, lluvioso, nublado).  
+
+---
+
+## 🛠️ Tecnologías requeridas
+- ⚛️ **React.js** (componentes funcionales)  
+- 🟦 **TypeScript**  
+- ⚡ **Vite** (entorno de desarrollo rápido)  
+- 🪝 **Hooks**: `useState`, `useEffect`  
+- 🌐 **fetch()** para consumo de APIs  
+- 📜 Fundamentos de JavaScript (desestructuración, promesas, manejo de errores)  
+
+---
+
+## 🚀 Instalación y ejecución
+
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/anfega154/Electiva1_WeatherApp_Ga-an
+   cd Electiva1_WeatherApp_ganan
+   npm install
+   npm run dev
+ ```
+
