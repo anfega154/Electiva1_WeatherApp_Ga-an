@@ -16,7 +16,7 @@ export default function HistoryList({ history, onSelect, onClear }: Props) {
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
         {history.map((history, index) => (
           <button key={index} onClick={() => onSelect(history)} style={{ textAlign: "left", padding: 8 }}>
-            {history.name} — {history.weather[0].description} — {Math.round(history.main.temp)}°C
+            {history.city} — {history.description} — {Math.round(history.temperature)}°C
           </button>
         ))}
       </div>
