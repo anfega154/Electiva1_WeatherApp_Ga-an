@@ -1,5 +1,3 @@
-import React from "react";
-
 import SearchBar from "./components/SearchBar";
 import WeatherCard from "./components/WeatherCard";
 import HistoryList from "./components/HistoryList";
@@ -13,26 +11,30 @@ export default function App() {
   }
 
   return (
-    <div style={{
-      minHeight: "100vh",
-      display: "flex",
-      alignItems: "flex-start",
-      justifyContent: "center",
-      padding: 24,
-      background: "linear-gradient(180deg,#f0f7ff,#ffffff)"
-    }}>
-      <div style={{ width: "100%", maxWidth: 920 }}>
-        <h1>Weather App</h1>
-        <p>Consulta condiciones climáticas en tiempo real. Interfaz en español.</p>
+    <div className="min-vh-100 d-flex justify-content-center align-items-start py-4 bg-light">
+      <div className="container" style={{ maxWidth: 920 }}>
+        <h1 className="text-center mb-3">🌤 Weather App</h1>
+        <p className="text-muted text-center mb-4">
+          Consulta condiciones climáticas en tiempo real.
+          PD: No aprobé diseño grafico 🫠🫠🫠
+        </p>
 
         <SearchBar onSearch={search} />
 
-        {loading && <div>Cargando…</div>}
-        {error && <div style={{ color: "red" }}>Error: {error}</div>}
+        {loading && <div className="alert alert-info">Cargando…</div>}
+        {error && <div className="alert alert-danger">Error: {error}</div>}
 
-        {data && <div style={{ marginTop: 12 }}><WeatherCard weather={data} /></div>}
+        {data && (
+          <div className="d-flex justify-content-center mt-3">
+            <WeatherCard weather={data} />
+          </div>
+        )}
 
-        <HistoryList history={history} onSelect={handleSelectHistory} onClear={clearHistory} />
+        <HistoryList
+          history={history}
+          onSelect={handleSelectHistory}
+          onClear={clearHistory}
+        />
       </div>
     </div>
   );
